@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - Mahir</title>
+    <link rel="stylesheet" href="../styles/artikel.css">
+</head>
+<body>
+    <div id="sidebar">
+        <h2><a href="../index.html">Mahir Blog</a></h2>
+        <a href="./dashboard.html">Beranda</a>
+        <a href="./artikel.html">Tulis Artikel</a>
+        <a href="#">Pengaturan</a>
+        <a href="#" class="btn-logout" onclick="buttonLogout()">Logout</a>
+    </div>
+    <div id="content">
+        <div id="navbar">
+            <div class="toggle-btn" onclick="toggleSidebar(event)">&#9776;</div>
+            <div class="right">
+                <input 
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Cari">
+                <button id="logout-btn" onclick="buttonLogout()">Logout</button>
+            </div>
+        </div>
+        <div class="content-dashboard">
+            <!-- Konten Dashboard -->
+            <h1>Tambahkan Artikel</h1>
+            <form id="articleForm">
+                <label for="title">Masukkan Judul</label>
+                <input type="text" id="title" name="title">
+                <label for="author">Penulis</label>
+                <input type="text" id="author" name="author">
+                <label for="date">Tanggal</label>
+                <input type="date" id="date" name="date">
+                <label for="artikel">Tulis Artikel</label>
+                <textarea name="" id="article" cols="30" rows="15"></textarea>
+                <input type="submit" value="Tambah">
+            </form>
+        </div>
+    </div>
+    <script>
+        const articleForm = document.getElementById("articleForm");
+
+        articleForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const titleInput = document.getElementById("title");
+            const authorInput = document.getElementById("author");
+            const dateInput = document.getElementById("date");
+            const articleInput = document.getElementById("article");
+
+            const title = titleInput.value.trim();
+            const author = authorInput.value.trim();
+            const date = dateInput.value.trim();
+            const article = articleInput.value.trim();
+
+            if (title === "" || author === "" || date === "" || article === "") {
+                alert("Inputan tidak boleh kosong");
+                document.forms["articleForm"].reset();
+            } else {
+                const articles = getArticlesFromLocalStorage();
+                articles.push({
+                    title: title,
+                    author: author,
+                    date: date,
+                    article: article,
+                });
+                saveArticlesToLocalStorage(articles);
+                document.forms["articleForm"].reset();
+                alert("Artikel berhasil ditambahkan");
+                window.location.href = "../admin/dashboard.html"
+            }
+        });
+
+        function getArticlesFromLocalStorage() {
+            const articlesJSON = localStorage.getItem("articles");
+            return articlesJSON ? JSON.parse(articlesJSON) : [];
+        }
+
+        function saveArticlesToLocalStorage(arg) {
+            localStorage.setItem("articles", JSON.stringify(arg))
+        }
+        // function tambahArticle(event) {
+        //     event.preventDefault()
+
+        //     const titleInput = document.getElementById("title");
+        //     const authorInput = document.getElementById("autthor");
+        //     const dateInput = document.getElementById("date");
+        //     const artikelInput = document.getElementById("artikel");
+            
+        //     const title = titleInput.value.trim();
+        //     const author = authorInput.value.trim();
+        //     const date = dateInput.value.trim();
+        //     const artikel = artikelInput.value.trim();
+
+        //     if (title !== "" && author !== "" && date !== "" && artikel !== "") {
+               
+        //     } else {
+        //         alert ("Harap di isi semua")
+        //     }
+
+        //     console.log("function berjalan")
+        // }
+
+        // function simpanArtikelDariLocalStorage(arg) {
+        //     localStorage.setItem("article", JSON.stringify(arg))
+        // }
+
+        // function dapatkanArtikelDariLocalStorage() {
+        //     const artikelJSON = localStorage.getItem("article");
+        //     return artikelJSON ? JSON.parse(artikelJSON) : [];
+        // }
+
+        function toggleSidebar(event) {
+            event.preventDefault;
+            const sidebar = document.getElementById("sidebar");
+            const content = document.getElementById("content");
+
+            if (sidebar.style.width === "250px") {
+                sidebar.style.width = "0px";
+                sidebar.style.display = "none";
+                content.style.marginLeft = "0px";
+            } else {
+                sidebar.style.width = "250px";
+                sidebar.style.display = "block";
+                content.style.marginLeft = "250px";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const userSession = getSessionFromLocalStorage()
+
+            if (!userSession) {
+                window.location.href = "../auth/login.html"
+                alert("Sesi anda telah berakhir, anda harus login kembali")
+            }
+        })
+
+        function buttonLogout() {
+            localStorage.removeItem("session");
+            alert("Logout berhasil!!");
+            window.location.href = "../auth/login.html"
+        }
+
+        function getSessionFromLocalStorage() {
+            const sessionJSON = localStorage.getItem("session");
+            return sessionJSON ? JSON.parse(sessionJSON) : null;
+        };
+
+        
+        
+    </script>
+</body>
+</html>
