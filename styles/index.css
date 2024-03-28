@@ -27,6 +27,11 @@
     align-items: baseline;
 }
 
+.navigasi {
+    display: flex;
+    gap: 10px;
+}
+
 .navigasi .login {
     background-color: white;
     color: var(--primary-blue);
@@ -38,6 +43,15 @@
 
 .navigasi .register {
     background-color: #ffb325;
+    color: var(--primary-blue);
+    padding: 8px 13px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.navigasi .dashboard {
+    background-color: #2ae399;
     color: var(--primary-blue);
     padding: 8px 13px;
     border: none;
