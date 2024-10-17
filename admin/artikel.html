@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artikel - Mahir</title>
+    <title>Artikel - Mahir Blog</title>
     <link rel="stylesheet" href="../styles/artikel.css">
+    <link rel="shortcut icon" href="../assets/login.svg" type="image/x-icon">
 </head>
 <body>
     <div id="sidebar">
@@ -59,7 +60,7 @@
             const article = articleInput.value.trim();
 
             if (title === "" || author === "" || date === "" || article === "") {
-                alert("Inputan tidak boleh kosong");
+                alert("Inputan tidak boleh kosong!");
                 document.forms["articleForm"].reset();
             } else {
                 const articles = getArticlesFromLocalStorage();
@@ -71,7 +72,7 @@
                 });
                 saveArticlesToLocalStorage(articles);
                 document.forms["articleForm"].reset();
-                alert("Artikel berhasil ditambahkan");
+                alert("Artikel berhasil ditambahkan!");
                 window.location.href = "../admin/dashboard.html"
             }
         });
@@ -84,36 +85,6 @@
         function saveArticlesToLocalStorage(arg) {
             localStorage.setItem("articles", JSON.stringify(arg))
         }
-        // function tambahArticle(event) {
-        //     event.preventDefault()
-
-        //     const titleInput = document.getElementById("title");
-        //     const authorInput = document.getElementById("autthor");
-        //     const dateInput = document.getElementById("date");
-        //     const artikelInput = document.getElementById("artikel");
-            
-        //     const title = titleInput.value.trim();
-        //     const author = authorInput.value.trim();
-        //     const date = dateInput.value.trim();
-        //     const artikel = artikelInput.value.trim();
-
-        //     if (title !== "" && author !== "" && date !== "" && artikel !== "") {
-               
-        //     } else {
-        //         alert ("Harap di isi semua")
-        //     }
-
-        //     console.log("function berjalan")
-        // }
-
-        // function simpanArtikelDariLocalStorage(arg) {
-        //     localStorage.setItem("article", JSON.stringify(arg))
-        // }
-
-        // function dapatkanArtikelDariLocalStorage() {
-        //     const artikelJSON = localStorage.getItem("article");
-        //     return artikelJSON ? JSON.parse(artikelJSON) : [];
-        // }
 
         function toggleSidebar(event) {
             event.preventDefault;
@@ -136,13 +107,13 @@
 
             if (!userSession) {
                 window.location.href = "../auth/login.html"
-                alert("Sesi anda telah berakhir, anda harus login kembali")
+                alert("Sesi anda telah berakhir, anda harus login kembali!")
             }
         })
 
         function buttonLogout() {
             localStorage.removeItem("session");
-            alert("Logout berhasil!!");
+            alert("Logout berhasil!");
             window.location.href = "../auth/login.html"
         }
 

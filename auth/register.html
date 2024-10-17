@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Account</title>
+    <title>Register Account Page - Mahir Blog</title>
     <link rel="stylesheet" href="../styles/register.css">
+    <link rel="shortcut icon" href="../assets/register.svg" type="image/x-icon">
 
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -54,19 +55,18 @@
                 const cekEmail = students.some((student) => student.email === email);
 
                 if (cekEmail) {
-                    alert("Email yang anda masukkan sudah ada yang memakainya, pake yg lain lhh!!!")
+                    alert("Email yang anda masukkan sudah ada yang memakainya, masukkan email yang lain!")
                 } else {
                     students.push({ email: email, password: password});
                     simpanStudentKeLocalStorage(students);
                     window.location.href = "./login.html"
-                    alert("Anda sudah berhasil diterima!!");
-                    
+                    alert("Registerasi Berhasil!");
                 }
 
                 console.log("function berjalan")
                 document.forms["registerform"].reset();
             } else {
-                alert("Email atau password tidak boleh kosong")
+                alert("Email atau password tidak boleh kosong!")
             }
 
            
@@ -85,7 +85,7 @@
             const sessionStudent = dapatkanSessionStudentsDariLocalStorage();
 
             if (sessionStudent) {
-                alert("Anda sudah login, keluar dlu pake tombol logout!!!");
+                alert("Anda sudah login, anda harus logout terlebih dahulu!");
                 window.location.href = "../admin/dashboard.html"
             }
           })

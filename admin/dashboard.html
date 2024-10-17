@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mahir</title>
+    <title>Dashboard - Mahir Blog</title>
     <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="shortcut icon" href="../assets/login.svg" type="image/x-icon">
 </head>
 <body>
     <div id="sidebar">
@@ -76,7 +77,7 @@
 
             if (!userSession) {
                 window.location.href = "../auth/login.html"
-                alert("Sesi anda telah berakhir, anda harus login kembali")
+                alert("Sesi anda telah berakhir, anda harus login kembali!")
             }
 
 
@@ -134,9 +135,9 @@
                     article: editedArticle,
                 }
                 saveArticlesToLocalStorage(articles);
-                alert("Artikel berhasil di update");
+                alert("Artikel berhasil di update!");
             } else {
-                alert("Inputan tidak boleh kosong")
+                alert("Inputan tidak boleh kosong!")
             }
         }
 
@@ -145,7 +146,7 @@
 
             if (confirm("Apakah anda yakin ingin menghapus data ini")) {
                 articles.splice(index, 1);
-                alert("Data berhasil dihapus");
+                alert("Data berhasil dihapus!");
             } else {
                 alert("Data tidak jadi dihapus!")
             }
@@ -188,7 +189,7 @@
 
         function buttonLogout() {
             localStorage.removeItem("session");
-            alert("Logout berhasil!!");
+            alert("Logout berhasil!");
             window.location.href = "../auth/login.html"
         }
 
